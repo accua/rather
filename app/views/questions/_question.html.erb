@@ -1,0 +1,42 @@
+<h2 id="question_header_<%= question.id %>" class="text-center"><%= question.content %></h2>
+<h6 id="question_info_<%= question.id %>" class="mb-2 text-muted text-center"><%= time_ago_in_words(question.created_at) %> ago by <strong><%= User.find(question.user_id).email %></strong></h6>
+<% if question.user_id == current_user.id %>
+  <%= link_to "Edit", edit_user_question_path(question.user_id, question), remote: true, class: "edit_link_#{question.id} btn btn-primary pagination-center"%>
+  <%= link_to "Delete", user_question_path(question.user_id, question), class: "delete_link_#{question.id} btn btn-primary", method: :delete %>
+<% end %>
+<div class="row">
+  <div class="card col-sm-12 col-md-6 question_<%=question.id%>" style="width: 20rem;">
+    <img class="card-img-top" src="#" alt="Card image cap">
+    <div class="card-block">
+      <h4 class="card-title"><%= question.choice_a %>:</h4>
+      <%= link_to question.choice_a, root_path(question, like: question.id), class: "btn btn-danger" %><%= question.get_likes.size %>
+    </div>
+  </div>
+  <div class="card col-sm-12 col-md-6 question_<%=question.id%>" style="width: 20rem;">
+    <img class="card-img-top" src="#" alt="Card image cap">
+    <div class="card-block">
+      <h4 class="card-title"><%= question.choice_b %>:</h4>
+      <%= link_to question.choice_b, root_path(question, dislike: question.id), class: "btn btn-primary" %><%= question.get_dislikes.size %>
+    </div>
+  </div>
+</div>
+<br>
+<h5 class="text-center">Discussion</h5>
+<div class="row">
+  <% link_to 'New Comment', new_question_comment_path(question) %>
+  <% if question.comments %>
+  <% question.comments.each do |comment| %>
+  <div class="card col-sm-12">
+    <div class="card-block">
+      <h4 class="card-title"><%= comment.user.email %></h4>
+      <p class="card-text"><%= comment.content %></p>
+      <% if current_user.id == comment.user_id %>
+      <%= link_to "Edit", edit_question_comment_path(question, comment), remote: true, class: "edit_link_#{question.id}"%>
+      <%= link_to "Delete", question_comment_path(question, comment), method: :delete %>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+  <br>
+<% end %>
+</div>

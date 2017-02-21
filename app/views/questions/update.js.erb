@@ -1,0 +1,8 @@
+$('#edit_question_<%= @question.id %>').remove();
+$('.edit_link_<%= @question.id %>').remove();
+$('.delete_link_<%= @question.id %>').remove();
+$('.question_<%=@question.id%>').remove();
+$('#question_header_<%= @question.id %>').remove();
+$('#question_info_<%= @question.id %>').remove();
+$('.edit_link_<%= @question.id %>').show();
+$('.questions').append('<%= j render @question %>')

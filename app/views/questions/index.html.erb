@@ -1,0 +1,7 @@
+<h1>Questions</h1>
+
+<div class="questions">
+  <% @questions.each do |question| %>
+  <%= render 'question', question: question %>
+  <% end %>
+</div>
