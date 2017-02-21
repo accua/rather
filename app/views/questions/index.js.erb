@@ -1,2 +1,1 @@
-$('#like').after(alert("liked"))
-$('#dislike').after(alert("disliked"))
+$('new_comment_#{question.id}').hide().after().append('<%= j render ("comment"), question: @question %>')

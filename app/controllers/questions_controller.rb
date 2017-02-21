@@ -14,6 +14,7 @@ class QuestionsController < ApplicationController
 
   def index
     @questions = Question.all
+    # @comment = Question.comments.new(comment_params)
     if (params[:like])
       choice_a = Question.find(params[:like])
       current_user.likes choice_a
@@ -55,5 +56,9 @@ class QuestionsController < ApplicationController
 private
   def question_params
     params.require(:question).permit(:content, :choice_a, :choice_b, :user_id, :tags)
+  end
+
+  def comment_params
+    params.require(:comment).permit(:content, :user_id)
   end
 end

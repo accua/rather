@@ -1,0 +1,10 @@
+<div class="card col-sm-12">
+  <div class="card-block">
+    <h4 class="card-title"><%= comment.user.email %> <small> <%= time_ago_in_words(comment.created_at)  %> ago </small> </h4>
+    <p class="card-text"><%= comment.content %></p>
+    <% if current_user.id == comment.user_id %>
+    <%= link_to "Edit", edit_question_comment_path(question, comment), remote: true, class: "edit_link_#{question.id}"%>
+    <%= link_to "Delete", question_comment_path(question, comment), method: :delete %>
+    <% end %>
+  </div>
+</div>

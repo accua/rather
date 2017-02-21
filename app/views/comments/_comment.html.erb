@@ -1,0 +1,6 @@
+<%= bootstrap_form_for [@question, @comment], class:"create_comment", remote: true do |f| %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.text_field :content %>
+
+  <%= f.submit %>
+<% end %>

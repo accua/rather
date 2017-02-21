@@ -5,14 +5,22 @@ class CommentsController < ApplicationController
   end
 
   def new
-    @questions.comments.new
+    @question = Question.find(params[:question_id])
+    @comment = @question.comments.new
+    respond_to do |format|
+      format.html {redirect_to comment_path}
+      format.js
+    end
   end
 
   def create
     @question = Question.find(params[:question_id])
     @comment = @question.comments.new(comment_params)
     if @question.save
-      redirect_to question_path(@question)
+      respond_to do |format|
+        format.html {redirect_to questions_path}
+        format.js
+      end
     else
       render :new
     end

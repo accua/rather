@@ -1,0 +1,3 @@
+$('#new_comment_<%=@question.id%>').show()
+$('.new_comment').hide()
+$('.comments').append('<%= j render "new_comment", question: @question, comment: @comment %>');

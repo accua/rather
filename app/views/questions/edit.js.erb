@@ -1,1 +1,2 @@
-$('.edit_link_<%= @question.id %>').hide().after('<%= j render ("form"), question: @question %>');
+$('.edit_link_<%= @question.id %>').hide()
+$('.edit_form_<%= @question.id %>').append('<%= j render ("form"), question: @question %>');
