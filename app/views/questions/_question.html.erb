@@ -5,14 +5,15 @@
   <%= link_to "Delete", user_question_path(question.user_id, question), class: "delete_link_#{question.id} btn btn-primary", method: :delete %>
 <% end %>
 <div class="row">
-  <div class="card col-sm-12 col-md-6 question_<%=question.id%>" style="width: 20rem;">
+  <div class="card col-sm-12 col-md-5 question_<%=question.id%>" style="width: 20rem;">
     <img class="card-img-top" src="#" alt="Card image cap">
     <div class="card-block">
       <h4 class="card-title"><%= question.choice_a %>:</h4>
       <%= link_to question.choice_a, root_path(question, like: question.id), class: "btn btn-danger" %><%= question.get_likes.size %>
+      <%= link_to question.choice_a, like: question.id, class: "btn btn-danger" %><%= question.get_likes.size %>
     </div>
   </div>
-  <div class="card col-sm-12 col-md-6 question_<%=question.id%>" style="width: 20rem;">
+  <div class="card col-sm-12 col-md-5 offset-md-2 question_<%=question.id%>" style="width: 20rem;">
     <img class="card-img-top" src="#" alt="Card image cap">
     <div class="card-block">
       <h4 class="card-title"><%= question.choice_b %>:</h4>
