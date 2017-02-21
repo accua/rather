@@ -1,30 +1,29 @@
 <h2 id="question_header_<%= question.id %>" class="text-center"><%= question.content %></h2>
 <h6 id="question_info_<%= question.id %>" class="mb-2 text-muted text-center"><%= time_ago_in_words(question.created_at) %> ago by <strong><%= User.find(question.user_id).email %></strong></h6>
 <% if question.user_id == current_user.id %>
-  <%= link_to "Edit", edit_user_question_path(question.user_id, question), remote: true, class: "edit_link_#{question.id} btn btn-primary pagination-center"%>
-  <%= link_to "Delete", user_question_path(question.user_id, question), class: "delete_link_#{question.id} btn btn-primary", method: :delete %>
+    <%= link_to "Edit", edit_user_question_path(question.user_id, question), remote: true, class: "edit_link_#{question.id} btn btn-primary edit-buttons"%>
+    <%= link_to "Delete", user_question_path(question.user_id, question), class: "delete_link_#{question.id} btn btn-primary edit-buttons", method: :delete %>
 <% end %>
 <div class="row">
   <div class="card col-sm-12 col-md-5 question_<%=question.id%>" style="width: 20rem;">
     <img class="card-img-top" src="#" alt="Card image cap">
     <div class="card-block">
-      <h4 class="card-title"><%= question.choice_a %>:</h4>
-      <%= link_to question.choice_a, root_path(question, like: question.id), class: "btn btn-danger" %><%= question.get_likes.size %>
-      <%= link_to question.choice_a, like: question.id, class: "btn btn-danger" %><%= question.get_likes.size %>
+      <h4 class="card-title"><%= question.choice_a %></h4>
+      <%= link_to "Vote", root_path(question, like: question.id), class: "btn btn-danger" %> Total: <%= question.get_likes.size %>
     </div>
   </div>
   <div class="card col-sm-12 col-md-5 offset-md-2 question_<%=question.id%>" style="width: 20rem;">
     <img class="card-img-top" src="#" alt="Card image cap">
     <div class="card-block">
-      <h4 class="card-title"><%= question.choice_b %>:</h4>
-      <%= link_to question.choice_b, root_path(question, dislike: question.id), class: "btn btn-primary" %><%= question.get_dislikes.size %>
+      <h4 class="card-title"><%= question.choice_b %></h4>
+      <%= link_to "Vote", root_path(question, dislike: question.id), class: "btn btn-primary" %> Total: <%= question.get_dislikes.size %>
     </div>
   </div>
 </div>
 <br>
 <h5 class="text-center">Discussion</h5>
 <div class="row">
-  <% link_to 'New Comment', new_question_comment_path(question) %>
+  <%= link_to 'New Comment', new_question_comment_path(question), class: 'btn btn-primary' %>
   <% if question.comments %>
   <% question.comments.each do |comment| %>
   <div class="card col-sm-12">

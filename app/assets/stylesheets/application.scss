@@ -15,3 +15,14 @@
  *= require rails_bootstrap_forms
  */
 @import "bootstrap";
+
+.edit-buttons {
+  display: inline-block;
+  width: 100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.card {
+  margin-top: 10px;
+}

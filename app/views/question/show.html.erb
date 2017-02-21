@@ -1,0 +1,10 @@
+<h1>Questions</h1>
+
+<ul>
+  <% @questions.each do |question| %>
+    <li>
+      <div class="btn btn-default"> <%= qustion.choice_a %> </div>
+      <div class="btn btn-default"> <%= qustion.choice_b %> </div>
+    </li>
+  <% end %>
+</ul>
